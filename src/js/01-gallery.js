@@ -2,20 +2,6 @@ import SimpleLightbox from "simplelightbox";
 import "simplelightbox/dist/simple-lightbox.min.css";
 import { galleryItems } from './gallery-items';
 
-// npm install
-// https://github.com/Specter-ode/goit-js-hw-08
-
-// npm install simplelightbox
-// npm install @vimeo/player
-// npm i lodash.throttle
-
-
-
-
-
-
-
-
 const galleryContainer = document.querySelector('.gallery');
 const blockMarkUp = createImagesGallery(galleryItems);
 galleryContainer.insertAdjacentHTML("afterbegin", blockMarkUp);
