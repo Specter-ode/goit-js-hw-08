@@ -5,46 +5,21 @@ import { galleryItems } from './gallery-items';
 const galleryContainer = document.querySelector('.gallery');
 const blockMarkUp = createImagesGallery(galleryItems);
 galleryContainer.insertAdjacentHTML("afterbegin", blockMarkUp);
-galleryContainer.addEventListener('click', onGalleryContainerClick);
 
 function createImagesGallery (items) {
     return items
     .map ( ({ preview, original, description }) =>
-      `<div class="gallery__item">
-          <a class="gallery__link" href="${original}">
+          `<a class="gallery__item" href="${original}">
               <img class="gallery__image"
               src="${preview}"
-              data-source="${original}"
               alt="${description}"
               />
-          </a>
-      </div>`)
+          </a>`)
       .join('');
 };
-  
-function onGalleryContainerClick(event) {
-    event.preventDefault();
-    if (event.target.nodeName !== 'IMG') {
-        return;
-    }
-    
-    const instance = basicLightbox.create(
-        `<img src="${event.target.dataset.source}">`,
-        {
-            onShow: function () { 
-                window.addEventListener("keydown", checkKeyEvent)
-            },
-            onClose: function () {
-                window.removeEventListener("keydown", checkKeyEvent)
-            }
-        }
-    )
-    instance.show()
 
-    function checkKeyEvent (event) {
-        console.log(event.code)
-        if (event.code === "Escape") {
-            instance.close();
-        }
-    }
-}
+const lightbox = new SimpleLightbox('.gallery a', { 
+    "captionsData": "alt",
+    "captionDelay": 250,
+    "captionPosition": "bottom"
+  });
