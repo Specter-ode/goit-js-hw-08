@@ -11,7 +11,8 @@ let savedData = {};
 formEl.addEventListener('input', throttle(saveData, 500));
 populateForm();
 
-function onTextareaInput(e) {
+function saveData(e) {
+
   let savedData = localStorage.getItem(STORAGE_KEY);
   if (savedData) {
     savedData = JSON.parse(savedData);
